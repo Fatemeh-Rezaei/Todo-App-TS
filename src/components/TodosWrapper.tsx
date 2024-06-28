@@ -39,7 +39,10 @@ function TodosWrapper() {
         return true;
     }
 
-    const toggleCompleted = (id: string) => { }
+    const toggleCompleted = (id: string) => {
+        setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+        return true
+    }
 
     return (
         <div className="TodoWrapper">

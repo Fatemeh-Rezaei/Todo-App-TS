@@ -5,13 +5,13 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons"
 type TodoProps = {
     todo: TodoType,
     deleteTodo: (id: string) => boolean,
-    toggleCompleted: (id: string) => void
+    toggleCompleted: (id: string) => boolean
 }
 
 function Todo({ todo, deleteTodo, toggleCompleted }: TodoProps) {
     return (
         <div className="Todo">
-            <p
+            <p onClick={() => toggleCompleted(todo.id)}
                 className={`${todo.completed ? "completed" : ""}`}
             >
                 {todo.title}
