@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import swal from 'sweetalert';
+
 import Todo from './Todo'
 import TodoForm from './TodoForm'
 import { Todo as TodoType } from './Todos.type'
@@ -20,8 +22,21 @@ function TodosWrapper() {
     }
 
     const deleteTodo = (id: string) => {
-        setTodos(todos.filter(todo => todo.id !== id))
-        return true
+        swal({
+            title: "آیا از حذف تودو اطمینان دارید؟",
+            icon: "warning",
+            buttons: ["نه", "آره"],
+        }).then(result => {
+            if (result) {
+                setTodos(todos.filter(todo => todo.id !== id))
+
+                swal({
+                    title: "تودوی مورد نظر با موفقیت حذف شد",
+                    icon: "success"
+                })
+            }
+        })
+        return true;
     }
 
     const toggleCompleted = (id: string) => { }
